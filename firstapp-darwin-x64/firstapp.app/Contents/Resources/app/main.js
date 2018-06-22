@@ -1,23 +1,35 @@
 const {app, BrowserWindow} = require('electron')
-  
+
+const debug = /--debug/.test(process.argv[2])
+
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
   let win
+  
   
   function createWindow () {
     // Create the browser window.
     win = new BrowserWindow({
       width: 1200,
       height: 800,
-      icon: __dirname + '/icons/favicon.ico'
+      icon: __dirname + '/icons/favicon.ico',
+      webPreferences: {
+        nodeIntegration: false,
+        preload: 'preload.js',
+        webSecurity: true
+      }
     })
   
-
     // and load the index.html of the app.
     win.loadFile('index.html')
   
-    // Open the DevTools.
-    win.webContents.openDevTools()
+    // Launch fullscreen with DevTools open, usage: npm run debug
+    if (debug) {
+      win.webContents.openDevTools()
+      win.maximize()
+      // require('devtron').install()
+    }
+
   
     // Emitted when the window is closed.
     win.on('closed', () => {

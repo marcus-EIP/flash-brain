@@ -1,0 +1,3 @@
+electron-packager . --overwrite --icon icons/app_icon
+
+
