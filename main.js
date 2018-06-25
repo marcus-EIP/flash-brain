@@ -10,8 +10,8 @@ const debug = /--debug/.test(process.argv[2])
   function createWindow () {
     // Create the browser window.
     win = new BrowserWindow({
-      width: 1200,
-      height: 800,
+      width: 1000,
+      height: 600,
       icon: __dirname + '/icons/favicon.ico',
       webPreferences: {
         nodeIntegration: false,
@@ -26,7 +26,7 @@ const debug = /--debug/.test(process.argv[2])
     // Launch fullscreen with DevTools open, usage: npm run debug
     if (debug) {
       win.webContents.openDevTools()
-      win.maximize()
+      // win.maximize()
       // require('devtron').install()
     }
 
